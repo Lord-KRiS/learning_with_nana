@@ -2,3 +2,5 @@ using the mongo-express image for the gui of our mongo container but need to hav
 for mongo contianer, the cmd was docker run -p 27017:27017 -d -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=password --net mongo-network --name mongodb-container  mongo &&& for the mongo-express container, the cmd was docker run -d -p 8081:8081 -e ME_CONFIG_MONGODB_ADMINUSERNAME=root -e ME_CONFIG_MONGODB_ADMINPASSWORD=password -e ME_CONFIG_MONGODB_SERVER=mongodb-container --net mongo-network --name mongo-express-nana mongo-express
 
 wrote a docker-compose file for the saem thing with that yaml structure, and therer no need to create a new network and connect them, docker-compose automatically joins all the containers an a single network.
+
+fhe xxxxxxxxxxeand, we can eiher use bin/bash, or /bi/sh, once o mwll alws work
