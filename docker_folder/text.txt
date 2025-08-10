@@ -1,3 +1,5 @@
+change the mongourl depending whetrher doing on local or in a container using docker-compose
+
 using the mongo-express image for the gui of our mongo container but need to have both the imgaes(mongo and mongo-express on the same network and give the coorrect admin username and password which you wrote while setting the mongodb container)
 for mongo contianer, the cmd was docker run -p 27017:27017 -d -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=password --net mongo-network --name mongodb-container  mongo &&& for the mongo-express container, the cmd was docker run -d -p 8081:8081 -e ME_CONFIG_MONGODB_ADMINUSERNAME=root -e ME_CONFIG_MONGODB_ADMINPASSWORD=password -e ME_CONFIG_MONGODB_SERVER=mongodb-container --net mongo-network --name mongo-express-nana mongo-express
 
@@ -10,4 +12,4 @@ using amazon ecr service as docker repository, which works like it needs a separ
 to login using aws lci, had to create an iam user, get access keys, allow permissions and then run the aws cli command
 okay so while pushing the image on aws ecr, we actually cant just do docker push image-name, coz it will assume that we are using dockerhub but awsecr actually needs to use the tag to specify that we are using it, so a slighly longer command (this is exactly what jenkins do while pushing a image on a docker repository, the cmds change a little it depending from registory to registory, but the idea is saem, we login, buikd the image, tag the image, then oush the image)
 
-can include volumes as well in docker compose, using the volume name that we provide, and in r=the services, under different image, we will write the vol name and a place(liek path where the data will be stired in inside the container), and in host, get the 
+can include volumes as well in docker compose, using the volume name that we provide, and in the services, under different image, we will write the vol name and a place(liek path where the data will be stired in inside the container like for mongo, it is data/db), and in host, those volumes are stored and the location depends on OS, like in windows, they are stored in ProgramData\Docker\volumes, and when the contyainer starts, it grabs the data from this local vlume and again put it in the /data/db folder inside of the container.

@@ -1,0 +1,21 @@
+Artifacts(A build output file) are the output files produced at various stages of your software development and delivery pipeline like testing, staging, and production deployment.  
+- .jar or .war file in a Java project
+- A .zip or .tar.gz bundle of compiled code
+- A .exe or .msi installer for Windows
+- Docker images
+- .deb or .rpm packages for Linux distributions
+An Artifact Repository is a centralized storage location where these build artifacts are stored, versioned, and retrieved for later use in the CI/CD pipeline. (Different package formats like separate repo fofr maven, npm, docker, etc. for access-control, Separate dev/test/prod artifacts)
+An Artifact Repository Manager is a tool/software that manages your artifact repository, it manages like versions, access perms, integration witrh tools like maven, gradle, docker etc, caching.
+most popular manager is nexus(by sonatype) (Works well with CI/CD tools like Jenkins, GitHub Actions, GitLab CI, Web UI for managing users, repositories, and viewing stored artifacts)
+
+we would not use these repo managers directly, eventually yhethey will be used as a tool in CI/CD pipeline so we will be intercating with tme automatically using scripts.
+So another important thingis the cleanup of these artifacts when required as every commit will create a new artifact, so we will end up with tons of artifacts which are nmot even necessary so we define some cleanup policies.
+
+just like github actions, there is jenkins for managing the cicd pipeline, we can use multiple services like npm maven, gradle, which can either be down;loaded as plugins,(easier but limited options) or can also download on the kenkins server (full access).
+in jenkins, if using gui, basically using the freestyle job, but can also manage everything using scripting, in a language called groovy
+
+
+AWS
+there are 3 levels, like top one is the IAM users account, next is the region(handles S3, VPC) and the last one is the availability zone(EC2 etc.)
+We have concept of VPC(virtual private network) which is like your own network so that it doesnt interfere with someone else's work as he would be on a separate vpc, by default when you create an EC2 instance, it is created on a vpc, you can creat emore as well for your use case. 
+there are availability zoens inside of a region which can be used as backup or other things, each AZ has a subnet which can be public or private, like aa private subnet cannot be accessed by outsiders, no browser req, typical setup is web application is on a public subnet as it want requests from outside, and the sb it is talking to is on a private sunet which allows request as the two of them are on the same VPC
